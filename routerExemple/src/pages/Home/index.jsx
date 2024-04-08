@@ -13,7 +13,7 @@ const Home = () => {
             {
                 state.posts.length > 0 ?
                     state.posts.map(post => {
-                        return <Link to={'/'} key={post.id}>{post.title}</Link>
+                        return <Link to={`/post/${post.id}`} key={post.id}>{post.title}</Link>
                     })
                     :
                     <p>Aucun posts à afficher</p>
