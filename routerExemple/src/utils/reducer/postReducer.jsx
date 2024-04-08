@@ -29,7 +29,7 @@ const postReducer = (state, action) => {
                     title: '',
                     content: ''
                 },
-                posts: [...state.posts, {id: id++, ...state.post}]
+                posts: [...state.posts, {id: id++, date: new Date(), author: 'Jean', ...state.post}]
             }
 
         default:
