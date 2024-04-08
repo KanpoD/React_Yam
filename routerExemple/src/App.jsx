@@ -6,15 +6,15 @@ import NavBar from "./component/NavBar/index.jsx";
 
 function App() {
 
-  return (
-    <>
-        <NavBar />
-      <Routes>
-        <Route path={'/'} element={<Home />} />
-        <Route path={'/add-post'} element={<AddPost />} />
-      </Routes>
-    </>
-  )
+    return (
+        <>
+            <NavBar/>
+            <Routes>
+                <Route path={'/'} element={<Home/>}/>
+                <Route path={'/add-post'} element={<AddPost/>}/>
+            </Routes>
+        </>
+    )
 }
 
 export default App
