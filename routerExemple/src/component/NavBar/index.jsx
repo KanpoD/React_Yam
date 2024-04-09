@@ -10,7 +10,8 @@ const NavBar = () => {
     return (
         <nav style={{display: "flex", gap: '15px'}}>
             <NavLink style={checkIsActive} to={'/'}>Accueil</NavLink>
-            <NavLink style={checkIsActive} to={'/add-post'}>Ajouter un post</NavLink>
+            <NavLink style={checkIsActive} to={'/statistics'}>Statistiques</NavLink>
+            <NavLink style={checkIsActive} to={'/rules'}>Rules</NavLink>
         </nav>
     );
 };

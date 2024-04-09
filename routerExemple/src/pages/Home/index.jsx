@@ -1,25 +1,13 @@
-import React from 'react';
-import {usePostContext} from "../../utils/context/postContext.jsx";
-import {Link} from "react-router-dom";
+import React from "react";
+import Simulator from "../../component/Simulator/index.jsx";
 
-const Home = () => {
-
-    const {state} = usePostContext()
-
-
-    return (
-        <div>
-            <h1>Liste des posts</h1>
-            {
-                state.posts.length > 0 ?
-                    state.posts.map(post => {
-                        return <Link to={`/post/${post.id}`} state={post} key={post.id}>{post.title}</Link>
-                    })
-                    :
-                    <p>Aucun posts à afficher</p>
-            }
-        </div>
-    );
-};
+function Home() {
+  return (
+    <div>
+      <h1>Yam</h1>
+      <Simulator />
+    </div>
+  );
+}
 
 export default Home;

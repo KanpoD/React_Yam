@@ -1,31 +1,44 @@
-import './App.css'
-import {Routes, Route, NavLink} from "react-router-dom"
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import React, { useReducer } from "react";
+import { createContext } from "react";
 import Home from "./pages/Home/index.jsx";
-import AddPost from "./pages/AddPost/index.jsx";
+import Rules from "./pages/Rules/index.jsx";
+import Statistics from "./pages/Stats/index.jsx";
 import NavBar from "./component/NavBar/index.jsx";
-import Param from "./pages/Param/index.jsx";
-import PostDetail from "./pages/PostDetail/index.jsx";
-import PostDetailItem from "./component/PostDetailItem/index.jsx";
-import PostContent from "./component/PostContent/index.jsx";
 
-function App() {
+export const DiceContext = createContext();
 
-    return (
-        <>
-            <NavBar/>
-            <Routes>
-                <Route path={'/'} element={<Home/>}/>
-                <Route path={'/add-post'} element={<AddPost/>}/>
-                <Route path={'/post/:id'} element={<PostDetail />}>
-                    <Route index element={<PostDetailItem />} />
-                    <Route path={"content"} element={<PostContent />} />
-                </Route>
-                {/*<Route path={'/param/:id'} element={<Param />} />*/}
-                {/*Gestion des routes non matchée*/}
-                <Route path={'*'} element={<div>Rien ici</div>} />
-            </Routes>
-        </>
-    )
+const initialState = {
+  rolls: 0,
+  tripleSixCount: 0,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "ROLL_DICE":
+      const rolls = action.payload;
+      const tripleSixCount =
+        action.payload === 3 ? state.tripleSixCount + 1 : state.tripleSixCount;
+      return { ...state, rolls, tripleSixCount };
+    default:
+      return state;
+  }
 }
 
-export default App
+function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <DiceContext.Provider value={{ state, dispatch }}>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/rules" element={<Rules />} />
+        <Route path="/statistics" element={<Statistics />} />
+      </Routes>
+    </DiceContext.Provider>
+  );
+}
+
+export default App;
